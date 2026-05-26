@@ -6,14 +6,14 @@
   },
   "metadata": {
     "description": "Learning-with-Court workshops platform. Interactive technical and creative workshops that run inside Claude Cowork and Claude Code.",
-    "version": "0.2.0"
+    "version": "0.3.0"
   },
   "plugins": [
     {
       "name": "lwc",
       "source": "./plugins/lwc-workshops",
-      "description": "Run Learning-with-Court workshops in Claude. One plugin, many workshops. Install once, start any workshop you have access to. Requires @learning-with-court/cli@>=0.9.1 installed globally (npm i -g @learning-with-court/cli).",
-      "version": "0.2.0",
+      "description": "Run Learning-with-Court workshops in Claude. One plugin, many workshops. Install once, start any workshop you have access to. CLI bundle is vendored — no global npm install required (works in Cowork's sandboxed VM).",
+      "version": "0.3.0",
       "author": {
         "name": "Court Schuett"
       },

@@ -10,15 +10,23 @@ Interactive technical and creative workshops that run inside Claude Cowork and C
 
 You install one plugin. New workshops appear automatically as they're added to your account — no plugin update needed.
 
-## Prerequisite — install the `lwc` CLI
+## How the MCP server is wired
 
-The plugin's MCP server is the `@learning-with-court/cli` running in stdio mode. Install it globally before enabling the plugin:
+The plugin's MCP server is the `@learning-with-court/cli` running in stdio mode. The CLI is **vendored as a single-file Node bundle** (`plugins/lwc-workshops/cli.bundle.mjs`), so Cowork's sandboxed VM can spawn it directly with `node` — no `npm`/`npx` required.
+
+Claude Code users don't need a separate install either; the plugin runs the bundle the same way. (If you prefer the host-installed CLI for direct `lwc` invocations outside of MCP, `npm i -g @learning-with-court/cli` still works.)
+
+### Refreshing the bundle (maintainer note)
+
+The bundle is vendored from `@learning-with-court/cli`. On each CLI release, refresh it from the platform monorepo:
 
 ```
-npm i -g @learning-with-court/cli
+pnpm --filter @learning-with-court/cli build
+cp ../learning-with-court-platform/packages/cli/dist/cli.bundle.mjs \
+   plugins/lwc-workshops/cli.bundle.mjs
 ```
 
-Requires v0.9.1 or later. Confirm with `lwc --version`.
+Bump `plugins/lwc-workshops/.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json` versions together.
 
 ## Install in Claude Cowork
 
