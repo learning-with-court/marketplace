@@ -1,6 +1,6 @@
 {
   "name": "lwc",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Learning-with-Court workshops platform. One plugin, many workshops. Generic orchestrator + lesson-runner skills delegate to an MCP server that serves workshop-specific content at runtime. Install once, access every workshop you're entitled to.",
   "author": {
     "name": "Court Schuett"
@@ -14,10 +14,9 @@
   ],
   "mcpServers": {
     "lwc": {
-      "command": "npx",
+      "command": "node",
       "args": [
-        "-y",
-        "@learning-with-court/cli@latest"
+        "${CLAUDE_PLUGIN_ROOT}/cli.bundle.mjs"
       ]
     }
   }
