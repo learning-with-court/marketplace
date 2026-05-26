@@ -1,0 +1,13 @@
+{
+  "name": "lwc-workshops-platform-mcp",
+  "version": "0.1.0-spike",
+  "private": true,
+  "type": "module",
+  "description": "Spike MCP server for the LWC workshops platform. Serves workshop content from a known local path (Phase 1 spike). Future: replaced by the lwc CLI's authenticated MCP proxy talking to per-workshop Lambdas.",
+  "scripts": {
+    "self-test": "node server.mjs --self-test"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0"
+  }
+}
