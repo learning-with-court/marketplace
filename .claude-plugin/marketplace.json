@@ -1,18 +1,27 @@
 {
   "name": "learning-with-court",
-  "description": "Learning-with-Court workshops platform. Interactive technical and creative workshops that run inside Claude Cowork and Claude Code.",
   "owner": {
     "name": "Court Schuett",
     "email": "court@subaud.io"
   },
+  "metadata": {
+    "description": "Learning-with-Court workshops platform. Interactive technical and creative workshops that run inside Claude Cowork and Claude Code.",
+    "version": "0.1.0"
+  },
   "plugins": [
     {
       "name": "LWC",
+      "source": "./plugins/lwc-workshops",
       "description": "Run Learning-with-Court workshops in Claude. One plugin, many workshops. Install once, start any workshop you have access to.",
-      "author": "Court Schuett",
-      "category": "education",
       "version": "0.1.0",
-      "source": "./plugins/lwc-workshops"
+      "author": {
+        "name": "Court Schuett"
+      },
+      "homepage": "https://workshop.institute",
+      "repository": "https://github.com/learning-with-court/marketplace",
+      "license": "MIT",
+      "keywords": ["lwc", "learning-with-court", "workshops", "education"],
+      "category": "education"
     }
   ]
 }
