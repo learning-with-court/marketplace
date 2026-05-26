@@ -1,13 +1,18 @@
 {
   "name": "lwc-workshops-platform-mcp",
-  "version": "0.1.0-spike",
+  "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "Spike MCP server for the LWC workshops platform. Serves workshop content from a known local path (Phase 1 spike). Future: replaced by the lwc CLI's authenticated MCP proxy talking to per-workshop Lambdas.",
+  "description": "MCP server for the LWC workshops platform plugin. Bundled via esbuild into server.bundle.mjs so the marketplace-installed plugin runs without an npm install step.",
   "scripts": {
-    "self-test": "node server.mjs --self-test"
+    "build": "esbuild server.mjs --bundle --platform=node --format=esm --packages=bundle --outfile=server.bundle.mjs --target=node20",
+    "self-test": "node server.bundle.mjs --self-test",
+    "self-test:source": "node server.mjs --self-test"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.0.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.0"
   }
 }

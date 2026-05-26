@@ -7,7 +7,7 @@
   "mcpServers": {
     "lwc-workshops": {
       "command": "node",
-      "args": ["${CLAUDE_PLUGIN_ROOT}/mcp-server/server.mjs"]
+      "args": ["${CLAUDE_PLUGIN_ROOT}/mcp-server/server.bundle.mjs"]
     }
   }
 }
