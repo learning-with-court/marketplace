@@ -10,7 +10,7 @@
   },
   "plugins": [
     {
-      "name": "LWC",
+      "name": "lwc",
       "source": "./plugins/lwc-workshops",
       "description": "Run Learning-with-Court workshops in Claude. One plugin, many workshops. Install once, start any workshop you have access to.",
       "version": "0.1.0",
