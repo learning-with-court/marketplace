@@ -7,7 +7,7 @@
   },
   "plugins": [
     {
-      "name": "lwc-workshops",
+      "name": "LWC",
       "description": "Run Learning-with-Court workshops in Claude. One plugin, many workshops. Install once, start any workshop you have access to.",
       "author": "Court Schuett",
       "category": "education",
