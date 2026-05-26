@@ -1,6 +1,6 @@
 {
   "name": "lwc",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Learning-with-Court workshops platform. One plugin, many workshops. Generic orchestrator + lesson-runner skills delegate to an MCP server that serves workshop-specific content at runtime. Install once, access every workshop you're entitled to.",
   "author": { "name": "Court Schuett" },
   "keywords": ["lwc", "learning-with-court", "workshops", "platform", "education"],
