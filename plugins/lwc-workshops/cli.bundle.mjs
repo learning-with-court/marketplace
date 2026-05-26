@@ -48722,7 +48722,7 @@ function catalogApiUrl() {
   const override = process.env.LWC_API_URL;
   if (override) return override;
   const env = activeEnv();
-  return env === "dev" ? "https://mcp-catalog-dev.workshop.institute" : "https://mcp-catalog.workshop.institute";
+  return env === "dev" ? envUrls(env).api : "https://mcp-catalog.workshop.institute";
 }
 function catalogMcpEndpoint() {
   return `${catalogApiUrl()}/mcp`;
