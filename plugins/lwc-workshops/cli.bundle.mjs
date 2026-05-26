@@ -49802,7 +49802,7 @@ function createActiveWorkshopResolver(deps) {
           `lwc: install record for "${ctx.workshopId}" has no apiSubdomain; falling back to convention "${subdomain2}". Re-run \`lwc setup ${ctx.workshopId}\` to refresh the registry.`
         );
       }
-      const url3 = `https://${subdomain2}.workshop.institute/mcp`;
+      const url3 = `https://${subdomain2}/mcp`;
       cached2 = { workshopId: ctx.workshopId, url: url3 };
       return { ok: true, workshopId: ctx.workshopId, url: url3 };
     } catch {
@@ -49827,13 +49827,13 @@ function createActiveWorkshopResolver(deps) {
         `lwc: could not resolve apiSubdomain for "${workshopId}" via catalog; falling back to convention "${subdomain}".`
       );
     }
-    const url2 = `https://${subdomain}.workshop.institute/mcp`;
+    const url2 = `https://${subdomain}/mcp`;
     cached2 = { workshopId, url: url2 };
     return { ok: true, workshopId, url: url2 };
   };
 }
 function conventionSubdomain(workshopId, env) {
-  return env === "dev" ? `${workshopId}-dev` : workshopId;
+  return env === "dev" ? `${workshopId}-dev.workshop.institute` : `${workshopId}.workshop.institute`;
 }
 function extractWorkshopId(result) {
   if (!result || typeof result !== "object") return null;
@@ -50032,7 +50032,7 @@ async function runStdioProxy(deps = {}) {
 function workshopUrlFromHint(workshopId, getInstall2) {
   const entry = getInstall2(workshopId);
   if (!entry?.apiSubdomain) return null;
-  return `https://${entry.apiSubdomain}.workshop.institute/mcp`;
+  return `https://${entry.apiSubdomain}/mcp`;
 }
 function friendlyNoActiveMessage(mode) {
   if (mode === "code") {
