@@ -6,9 +6,19 @@ Interactive technical and creative workshops that run inside Claude Cowork and C
 
 | Plugin | What it does |
 |---|---|
-| `lwc-workshops` | The platform. Generic orchestrator + lesson-runner skills that drive any LWC workshop. The actual workshop content (lesson prose, verify scripts) is served at runtime from `workshop.institute`. |
+| `lwc` | The platform. Generic orchestrator + lesson-runner skills that drive any LWC workshop. The actual workshop content (lesson prose, verify scripts) is served at runtime from `workshop.institute`. |
 
 You install one plugin. New workshops appear automatically as they're added to your account — no plugin update needed.
+
+## Prerequisite — install the `lwc` CLI
+
+The plugin's MCP server is the `@learning-with-court/cli` running in stdio mode. Install it globally before enabling the plugin:
+
+```
+npm i -g @learning-with-court/cli
+```
+
+Requires v0.9.1 or later. Confirm with `lwc --version`.
 
 ## Install in Claude Cowork
 
@@ -24,13 +34,13 @@ You install one plugin. New workshops appear automatically as they're added to y
    ```
 8. Click **Sync**.
 
-The marketplace appears in your Personal tabs. Find `lwc-workshops` in the listing and install it. Then in any new Cowork chat, say "let's start a workshop" and Claude will list what's available to you.
+The marketplace appears in your Personal tabs. Find `lwc` in the listing and install it. Then in any new Cowork chat, say "let's start a workshop" and Claude will list what's available to you.
 
 ## Install in Claude Code
 
 ```
 /plugin marketplace add learning-with-court/marketplace
-/plugin install lwc-workshops
+/plugin install lwc
 ```
 
 Then say "let's start a workshop" in any Claude Code session.

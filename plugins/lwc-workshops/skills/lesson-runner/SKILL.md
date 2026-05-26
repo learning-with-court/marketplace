@@ -9,9 +9,9 @@ You are the per-lesson driver inside an LWC workshop. The workshop-orchestrator 
 
 ## On dispatch / when this skill fires
 
-1. Call `lwc-workshops.orient` to confirm the current workshop and lesson. If no workshop is active, hand back to the orchestrator — say something like "Let me check where we are first" and call the workshop-orchestrator skill.
+1. Call `lwc.get_active_workshop` to confirm a workshop is active, then `lwc.orient` (per-workshop) to confirm the current lesson ordinal/slug. If no workshop is active, hand back to the orchestrator — say something like "Let me check where we are first" and call the workshop-orchestrator skill.
 
-2. Call `lwc-workshops.get_lesson_prose({workshop_id, lesson_id: current_lesson})`. This returns the lesson's instructions — the prose you'd find in a workshop's own `skills/lesson-NN/SKILL.md`.
+2. Call `lwc.get_lesson_prose({workshop_id, lesson_id: current_lesson_id})`. This returns the lesson's instructions — the prose you'd find in a workshop's own `skills/lesson-NN/SKILL.md`.
 
 3. **Use the returned prose as your binding instructions for this lesson.** Follow it as written. It tells you:
    - What the learner is working on
@@ -28,7 +28,7 @@ When the learner signals ready ("run verify", "check it", etc.) and the lesson p
 
 1. Run the verify command the lesson specifies (typically `node verify/lesson-NN.mjs` from the workshop's local folder).
 2. Parse the JSON output for `pass` and `errors`.
-3. Call `lwc-workshops.submit_verify_output({workshop_id, lesson_id, output: <JSON-stringified verify output>})`. The MCP records the result and, on `pass: true`, advances `current_lesson` server-side.
+3. Call `lwc.submit_verify_output({workshop_id, lesson_id, output: <JSON-stringified verify output>})`. The MCP records the result and, on `pass: true`, advances `current_lesson` server-side.
 4. If pass, congratulate briefly (per the workshop's pedagogy mode), then either dispatch the next lesson or wait for the learner's "ready" signal — whichever the workshop's prose specifies.
 5. If fail, translate the errors to friendly prose (the orchestrator's operating rules cover this), ask the learner how they want to fix.
 
@@ -36,7 +36,7 @@ When the learner signals ready ("run verify", "check it", etc.) and the lesson p
 
 When `current_lesson` exceeds the workshop's total lessons (after a successful submit_verify_output advances past the last lesson):
 
-1. Call `lwc-workshops.get_orchestrator_prose` again — the orchestrator's prose includes its "final step" guidance, which differs per workshop (some workshops install the learner's artifact, some just congratulate, etc.).
+1. Call `lwc.get_orchestrator_prose({workshop_id})` again — the orchestrator's prose includes its "final step" guidance, which differs per workshop (some workshops install the learner's artifact via `lwc.package_user_skill`, some just congratulate, etc.).
 2. Follow that final-step prose.
 
 ## What this lesson-runner never does
