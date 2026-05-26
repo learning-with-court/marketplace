@@ -38,7 +38,7 @@ Bump `plugins/lwc-workshops/.claude-plugin/plugin.json` and `.claude-plugin/mark
 6. Click **Add marketplace**.
 7. In the dialog's URL field, paste:
    ```
-   learning-with-court/marketplace
+   learning-with-court/lwc
    ```
 8. Click **Sync**.
 
@@ -47,7 +47,7 @@ The marketplace appears in your Personal tabs. Find `lwc` in the listing and ins
 ## Install in Claude Code
 
 ```
-/plugin marketplace add learning-with-court/marketplace
+/plugin marketplace add learning-with-court/lwc
 /plugin install lwc
 ```
 
