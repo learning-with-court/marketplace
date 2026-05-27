@@ -1,6 +1,6 @@
 {
   "name": "lwc",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "Learning-with-Court workshops platform. Ships the workshop-orchestrator and lesson-runner skills that drive any LWC workshop. Pair with the LWC Custom Connector (Cowork) or the @learning-with-court/cli (Claude Code) for MCP access.",
   "author": {
     "name": "Court Schuett"
@@ -16,7 +16,9 @@
     "lwc": {
       "type": "http",
       "url": "https://mcp.workshop.institute/mcp",
-      "clientId": "OwQKvLdDebg2PZqs"
+      "oauth": {
+        "clientId": "OwQKvLdDebg2PZqs"
+      }
     }
   }
 }
