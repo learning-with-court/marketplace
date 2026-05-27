@@ -1,7 +1,7 @@
 {
   "name": "lwc",
-  "version": "0.3.2",
-  "description": "Learning-with-Court workshops platform. One plugin, many workshops. Generic orchestrator + lesson-runner skills delegate to an MCP server that serves workshop-specific content at runtime. Install once, access every workshop you're entitled to.",
+  "version": "0.4.0",
+  "description": "Learning-with-Court workshops platform. Ships the workshop-orchestrator and lesson-runner skills that drive any LWC workshop. Pair with the LWC Custom Connector (Cowork) or the @learning-with-court/cli (Claude Code) for MCP access.",
   "author": {
     "name": "Court Schuett"
   },
@@ -11,13 +11,5 @@
     "workshops",
     "platform",
     "education"
-  ],
-  "mcpServers": {
-    "lwc": {
-      "command": "node",
-      "args": [
-        "${CLAUDE_PLUGIN_ROOT}/cli.bundle.mjs"
-      ]
-    }
-  }
+  ]
 }

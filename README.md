@@ -10,52 +10,33 @@ Interactive technical and creative workshops that run inside Claude Cowork and C
 
 You install one plugin. New workshops appear automatically as they're added to your account — no plugin update needed.
 
-## How the MCP server is wired
+## How MCP is wired
 
-The plugin's MCP server is the `@learning-with-court/cli` running in stdio mode. The CLI is **vendored as a single-file Node bundle** (`plugins/lwc-workshops/cli.bundle.mjs`), so Cowork's sandboxed VM can spawn it directly with `node` — no `npm`/`npx` required.
+The plugin ships **skills only**. The MCP transport is a separate piece, and the right answer depends on which surface you're using:
 
-Claude Code users don't need a separate install either; the plugin runs the bundle the same way. (If you prefer the host-installed CLI for direct `lwc` invocations outside of MCP, `npm i -g @learning-with-court/cli` still works.)
+- **Cowork (claude.ai / Desktop)** — add the **LWC Custom Connector** alongside the plugin. The connector signs in via OAuth and talks to `mcp.workshop.institute/mcp`. The plugin's skills then drive the workshop.
+- **Claude Code (CLI)** — install `@learning-with-court/cli` globally. `lwc setup <workshop-id>` lays down a `.mcp.json` in the workshop folder so Code spawns the CLI as a stdio MCP server. The plugin's skills are optional in this mode — the CLI's own MCP tools handle setup and the orchestrator/lesson-runner skills are bundled with each workshop repo.
 
-### Refreshing the bundle (maintainer note)
+**One install page covers both flows:** <https://workshop.institute/add-to-claude>
 
-The bundle is vendored from `@learning-with-court/cli`. On each CLI release, refresh it from the platform monorepo:
+## Install in Claude Cowork (short version)
 
-```
-pnpm --filter @learning-with-court/cli build
-cp ../learning-with-court-platform/packages/cli/dist/cli.bundle.mjs \
-   plugins/lwc-workshops/cli.bundle.mjs
-```
+1. **Plugin.** Customize → Plugins → Personal → + → Add marketplace → paste `learning-with-court/lwc`. Enable the `lwc` plugin.
+2. **Connector.** Customize → Connectors → + → Add custom connector. URL: `https://mcp.workshop.institute/mcp`. Advanced → OAuth Client ID: `OwQKvLdDebg2PZqs`. Add → Sign in.
+3. Restart conversation. Say "let's start a workshop."
 
-Bump `plugins/lwc-workshops/.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json` versions together.
+Full step-by-step (with screenshots): <https://workshop.institute/add-to-claude>
 
-## Install in Claude Cowork
-
-1. Open **Claude Desktop** and click the **Cowork** tab.
-2. Click **Customize** in the sidebar.
-3. Open the **Plugins** section.
-4. Click the **Personal** tab.
-5. Click the **+** button next to your existing marketplace tabs.
-6. Click **Add marketplace**.
-7. In the dialog's URL field, paste:
-   ```
-   learning-with-court/lwc
-   ```
-8. Click **Sync**.
-
-The marketplace appears in your Personal tabs. Find `lwc` in the listing and install it. Then in any new Cowork chat, say "let's start a workshop" and Claude will list what's available to you.
-
-## Install in Claude Code
+## Install in Claude Code (short version)
 
 ```
-/plugin marketplace add learning-with-court/lwc
-/plugin install lwc
+npm i -g @learning-with-court/cli@latest
+lwc auth login
+lwc setup <workshop-id>
+cd ~/learning-with-court/<workshop-id> && claude .
 ```
 
-Then say "let's start a workshop" in any Claude Code session.
-
-## Auth
-
-After installing, the first time you try to start a workshop the platform will walk you through signing in to `workshop.institute` via your browser. This is one-time and unlocks the workshops your account is entitled to.
+Full step-by-step: <https://workshop.institute/add-to-claude>
 
 ## What this marketplace isn't
 
